@@ -6,10 +6,11 @@ from PIL import Image
 import json
 import os
 
-printer = getUSBPrinter()(idVendor=0x0519,
-                          idProduct=0x2013,
-                          inputEndPoint=0x81,
-                          outputEndPoint=0x03)  # Create the printer object with the connection params
+# printer = getUSBPrinter()(idVendor=0x0519,
+#                           idProduct=0x2013,
+#                           inputEndPoint=0x81,
+#                           outputEndPoint=0x03)  # Create the printer object with the connection params
+
 fake = Faker(['zh_TW'])
 Faker.seed(0)
 fake.seed_instance(0)
@@ -28,6 +29,11 @@ def getRandomFile(path):
   return file_path
 
 def get_syth_data():
+    printer = getUSBPrinter()(idVendor=0x0519,
+                          idProduct=0x2013,
+                          inputEndPoint=0x81,
+                          outputEndPoint=0x03)  # Create the printer object with the connection params
+
     fake.seed_locale('zh_TW', random.randint(0, 6000))
     data = []
     or_imgfile = getRandomFile(path_dirs[random.randint(0, 1)])
