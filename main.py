@@ -47,6 +47,7 @@ def get_syth_data():
         temp['phone'] = fake.phone_number()
         temp['email'] = fake.ascii_free_email()
         temp['ip_address'] = f"{random.randint(100,255)}.{random.randint(100,255)}.{random.randint(100,255)}.{random.randint(100,255)}"
+        temp['file_path'] = or_imgfile
         data.append(temp)
     # print(f"data is : {data}")
     printer.lf()
@@ -66,14 +67,23 @@ def get_syth_data():
     printer.text(f"E-Mail：{data[0]['email']}\n".encode('GB18030'))
     printer.lf()
     printer.lf()
-    printer.lf()    
+    printer.lf()   
+
+    return data[0]
 
 
 @app.route('/print')
 def hello():
     # os.system('sudo python esc_printer.py')
-    get_syth_data()
-    return "print!"
+    data = get_syth_data()
+    dump = {
+        "name":data['name'],
+        "phone":data['phone'],
+        "email":data['email'],
+        "ip_address":data['ip_address'],
+        "file_path":data['file_path']
+    }
+    return dump
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port= 8090, debug = True)
