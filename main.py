@@ -67,7 +67,14 @@ def get_syth_data():
     printer.text(f"E-Mail：{data[0]['email']}\n".encode('GB18030'))
     printer.lf()
     printer.lf()
-    printer.lf()   
+    printer.lf()
+    printer.lf()
+    printer.lf()
+    printer.lf()
+    printer.lf()
+    printer.horizontalPosition(200)
+    printer.cutPaper()
+    printer.drawerKickPulse()   
 
     return data[0]
 
